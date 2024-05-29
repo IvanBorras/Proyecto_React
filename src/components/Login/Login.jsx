@@ -100,7 +100,7 @@ function Login({ setUser }) {
   } else {
 
     return (
-      <span>
+      <span className='mainLogin'>
       <h2>Login</h2>
         <form className='formLogin' onSubmit={handleSubmit}>
             <span className='containerLogin'>

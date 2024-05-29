@@ -71,7 +71,7 @@ const FormRegister = () => {
   };
 
   return (
-    <span>
+    <span className='mainRegister'>
         <h2>Registro</h2>
       <form className='formRegister' onSubmit={handleSubmit}>
         {errorMessage && <p style={{ color: 'white' }}>{errorMessage}</p>}
