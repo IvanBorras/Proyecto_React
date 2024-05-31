@@ -73,8 +73,8 @@ function Login({ setUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch('https://66505467ec9b4a4a60319fe4.mockapi.io/api/menusemanal/users')
+ //comprobando si el usuario existe
+    fetch('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/users')
       .then((response) => response.json())
       .then((data) => {
         const user = data.find((user) => user.username === username && user.password === password);

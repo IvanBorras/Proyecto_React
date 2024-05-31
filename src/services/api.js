@@ -1,104 +1,46 @@
 const getDataApi = () => {
-    return fetch('https://66505467ec9b4a4a60319fe4.mockapi.io/api/menusemanal/foods')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (!Array.isArray(data)) {
-          throw new Error('Data is not an array');
-        }
+  return fetch('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/menus')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('La API no responde');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (!Array.isArray(data)) {
+        throw new Error('Los datos no son un array');
+      }
 
-        // Objeto para almacenar los menús organizados por días
-        const menusByDay = {
-          Monday: [],
-          Tuesday: [],
-          Wednesday: [],
-          Thursday: [],
-          Friday: [],
-          Saturday: [],
-          Sunday: []
-        };
+      console.log("api con datos")
+      console.log(data)
 
-        // Iterar sobre los datos y agruparlos por días
-      data.forEach(item => {
-        // Verificar si el día existe en los datos y agregar la comida correspondiente
-        if (item.day && menusByDay[item.day]) {
-          menusByDay[item.day].push({
-            name: item.name,
-            description: item.description,
-            type: item.type
-          });
-        }
-      });
+      
 
-    //    // Crear una matriz de menús con los datos organizados
-    //    const menus = [{
-    //     id: '1', // Puedes asignar un ID único si es necesario
-    //     days: Object.entries(menusByDay).map(([day, meals]) => ({
-    //       day,
-    //       meals
-    //     }))
-    //   }];
-
-    //   return menus;
-    // })
-    // .catch(error => {
-    //   console.error('Fetch error:', error);
-    //   return [];
-    // });
-     const dataInfo = data.map(item => ({
-              name: item.name,
-              image: item.image,
-              description: item.description,
-              taste: item.taste,
-              ingredients: item.ingredients,
-              type: item.type,
-            }));
-            return dataInfo;
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
-            return [];
-          });
+      const dataInfo = [];
+      // Crear un objeto con la información deseada de cada comida
+      data.forEach(day => {
+        // Iterar sobre los menús de cada día
+        day.menu.forEach(menuItem => {
+            // Iterar sobre las comidas de cada menú
+            menuItem.meals.forEach(meal => {
+                // Crear un objeto con la información deseada de cada comida
+                const mealInfo = {
+                    name: meal.name,
+                    image: meal.image,
+                    description: meal.description,
+                    taste: meal.taste || "", // Asegurarse de manejar el caso en que 'taste' no esté definido
+                    ingredients: meal.ingredients,
+                    type: meal.type
+                };
+                // Agregar el objeto al arreglo dataInfo
+                dataInfo.push(mealInfo);
+            });
+        });
+    });
+      console.log('aqui datainfo despues de hacer forEach')
+      console.log(dataInfo)
+      return {dataInfo};
+    })
 };
-
-  export default getDataApi;
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const getDataApi = () => {
-//     return fetch ('https://66505467ec9b4a4a60319fe4.mockapi.io/api/menusemanal/foods')
-//     .then(response => response.json())
-//     .then((data) => {
-//         const dataInfo = data.map((item) => {
-//             return {
-//                 name: item.name,
-//                 image: item.image,
-//                 description: item.description,
-//                 taste: item.taste,
-//                 ingredients: item.ingredients,
-//                 type: item.type,
-//               };
-//         });
-//         return dataInfo;
-//     });
-// };
-
-// export default getDataApi;
+    
+export default getDataApi;

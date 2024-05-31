@@ -30,7 +30,7 @@ const FormRegister = () => {
     ev.preventDefault();
 
     // Verificar si el email ya está registrado
-    fetch('https://66505467ec9b4a4a60319fe4.mockapi.io/api/menusemanal/users')
+    fetch('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/users')
       .then(response => response.json())
       .then(users => {
         const userExists = users.some(user => user.email === email);
@@ -47,8 +47,8 @@ const FormRegister = () => {
             password: password
           };
 
-          // Enviar la solicitud POST al mock API
-          fetch('https://66505467ec9b4a4a60319fe4.mockapi.io/api/menusemanal/users', {
+          // Enviar Usuario a mock API
+          fetch('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/users', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
