@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 
 const FormRegister = () => {
   // variables de estado
-  const [username, setuserName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
 
   //EVENTOS
 
   const handleChangeName = (ev) => {
-    setuserName(ev.target.value);
+    setName(ev.target.value);
   };
 
   const handleChangeEmail = (ev) => {
@@ -20,6 +21,10 @@ const FormRegister = () => {
   const handleChangePassword = (ev) => {
     setPassword(ev.target.value);
   };
+
+  const handleChangeUsername = (ev) => {
+    setUsername(ev.target.value);
+  }
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -36,7 +41,8 @@ const FormRegister = () => {
           setErrorMessage('Registro exitoso');
           // Construir el objeto de usuario a enviar al mock API
           const newUser = {
-            name: username,
+            username: username,
+            name: name,
             email: email,
             password: password
           };
@@ -54,6 +60,7 @@ const FormRegister = () => {
             console.log(response);
             // Limpiar los campos después de enviar el formulario
             setName('');
+            setUsername('');
             setEmail('');
             setPassword('');
             setErrorMessage(''); // Limpiar el mensaje de error si el registro es exitoso
@@ -77,8 +84,12 @@ const FormRegister = () => {
         {errorMessage && <p style={{ color: 'white' }}>{errorMessage}</p>}
         <span className='containerRegister'>
           <span>
+            <label>Name</label>
+            <input placeholder='Introduce tu Nombre' type="text" value={name} onChange={handleChangeName} required />
+          </span>
+          <span>
             <label>Username</label>
-            <input placeholder='Introduce tu Nombre' type="text" value={username} onChange={handleChangeName} required />
+            <input placeholder='Introduce tu Nombre de usuario' type="text" value={username} onChange={handleChangeUsername} required />
           </span>
           <span>
             <label>Email</label>

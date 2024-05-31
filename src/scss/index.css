@@ -10,150 +10,54 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  
+}
 
-  /* añadido */
-  div{
-    display: inline-block;
-    align-content: center ;
-    align-items: center;
-    nav{
-      display: inline;
-      /* align-items: center;
-      align-content: center;
-      text-align: center; */
-    }
+
+/* NUESTRO CSS AÑADIDO */
+
+*{
+  padding:0;
+  margin: 0px;
+}
+.navBar{
+    height: 200px;
+    background: linear-gradient(rgb(229, 153, 60), rgb(167, 198, 209));
+    text-align: center;
   }
-}
 
-
-/* ESTILO BASICO   */
-
-.Portada{
-  margin: 50px;
-  display: flex;
-
-}
-
-.navButton{
-  display: flex;
-  padding: 10px;
-  margin: 30px;
-  gap: 20px;
-  
-
-}
-
-
-.mainRegister{
-  display: inline-block;
-  text-align: center;
-
-  .formRegister{
-    display: flex;
+  body{
+    background-color:  rgb(167, 198, 209);
+    height: 500px;
+    padding-top: 0px;
+    text-align: center;
+  }
+  .title{
+    font-size: 55px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 10px;
-    width: 1000px;
-    margin: 10px;
-    background-color: chocolate;
-  
-    input{
-      margin: 20px;
-      padding: 10px;
-    }
-
-    .containerRegister{
-      display: flex;
-      text-align: center;
-      
-    }
+  }
+  .navButtons{
 
   }
+
+.clickButton{
+  background-color: #949f9f;
+  font-size: 18px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-transform: uppercase;
+  padding: 12px;
+  margin: 20px;
+  border: #242424;
+  border-radius: 12px;
 }
-
-
-.mainLogin{
-  display: inline-block;
-  text-align: center;
-
-  .formLogin{
-    display: flex;
-    padding: 10px;
-    width: 700px;
-    margin: 10px;
-    background-color: chocolate;
-  
-    input{
-      margin: 20px;
-      padding: 10px;
-    }
-
-    .containerLogin{
-      display: flex;
-      text-align: center;
-      
-    }
-
-  }
+a{
+  color:white;
+  font-weight: bolder;
+  text-decoration: none;
+  padding: 32px;
 }
-
-
-
-
-/*  CONTINUA LO QUE ESTABA POR DEFECTO   */
-
-
-
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 10;
-  display: flex;
-  place-items: center;
-  width: 100%;
-    
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.clickButton:hover{
+  background-color: rgb(202, 173, 139);
+  height: 100%;
 }
