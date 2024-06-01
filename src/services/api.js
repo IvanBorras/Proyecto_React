@@ -11,35 +11,43 @@ const getDataApi = () => {
         throw new Error('Los datos no son un array');
       }
 
-      console.log("api (data)", data)
-      
-
-      
+      console.log("api (data)", data);
 
       const dataInfo = [];
-      // Crear un objeto con la información deseada de cada comida
-      data.forEach(day => {
-        // Iterar sobre los menús de cada día
-        day.menu.forEach(menuItem => {
-            // Iterar sobre las comidas de cada menú
-            menuItem.meals.forEach(meal => {
-                // Crear un objeto con la información deseada de cada comida
-                const mealInfo = {
-                    name: meal.name,
-                    image: meal.image,
-                    description: meal.description,
-                    taste: meal.taste || "", // Asegurarse de manejar el caso en que 'taste' no esté definido
-                    ingredients: meal.ingredients,
-                    type: meal.type
-                };
-                // Agregar el objeto al arreglo dataInfo
-                dataInfo.push(mealInfo);
-            });
+
+      // Iterar sobre los menús para extraer la información deseada
+      data.forEach(menu => {
+        // Iterar sobre los días dentro de cada menú
+        menu.menu.forEach(day => {
+          // Crear un objeto con la información deseada de cada comida
+          const dayMenu = {
+            day: day.day,
+            meals: []
+          };
+          // Iterar sobre las comidas dentro de cada día
+          day.meals.forEach(meal => {
+            const mealInfo = {
+              id: meal.id,
+              name: meal.name,
+              image: meal.image,
+              description: meal.description,
+              ingredients: meal.ingredients,
+              type: meal.type
+            };
+            // Agregar la comida al arreglo de comidas del día
+            dayMenu.meals.push(mealInfo);
+          });
+          // Agregar el objeto del día al arreglo dataInfo
+          dataInfo.push(dayMenu);
         });
-    });
-      console.log('Menus mapeados(dataInfo)', dataInfo)
-      return {dataInfo};
+      });
+
+      console.log('Menus mapeados(dataInfo)', dataInfo);
+      return { dataInfo };
     })
+    .catch(error => {
+      console.error('Error al obtener datos del menú:', error);
+    });
 };
-    
+
 export default getDataApi;

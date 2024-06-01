@@ -15,22 +15,26 @@ function FoodList({ dataInfo }) {
   return (
     <div>
       <h2>Menú Semanal</h2>
-      {menu.map((meal, index) => (
-        <span key={index}>
-          <h3>{meal.name}</h3>
-          <p>Tipo: {meal.type}</p>
+      {menu.map((day, index) => (
+        <div key={index}>
+          <h3>{day.day}</h3>
           <ul>
-            <li>
-              <img src={meal.image} alt={meal.name} />
-              <p>{meal.description}</p>
-              {meal.taste && <p>Sabor: {meal.taste}</p>}
-              <p>Ingredientes: {meal.ingredients.join(', ')}</p>
-            </li>
+            {day.meals.map((meal, mealIndex) => (
+              <li key={mealIndex}>
+                <h4>{meal.name}</h4>
+                <p>Tipo: {meal.type}</p>
+                <img src={meal.image} alt={meal.name} />
+                <p>{meal.description}</p>
+                {meal.taste && <p>Sabor: {meal.taste}</p>}
+                <p>Ingredientes: {meal.ingredients.join(', ')}</p>
+              </li>
+            ))}
           </ul>
-        </span>
+        </div>
       ))}
     </div>
   );
-}
+};
+  
 
 export default FoodList;
