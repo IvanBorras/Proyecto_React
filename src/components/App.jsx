@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import getDataApi from "../services/api";
 import FoodList from "./FoodList/FoodList";
 import AddMenu from "./FoodList/AddMenu";
-import DeleteMenu from "./FoodList/DeleteMenu";
+// import DeleteMenu from "./FoodList/DeleteMenu";
 import FilterByTaste from "./Filters/FilterByTaste";
 import FilterByType from "./Filters/FilterByType";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -71,7 +71,7 @@ function App() {
               <FilterByType allType={getType()} setType={setType} />
               <FoodList dataInfo={dataInfo} setMenus={setMenus} />
               <AddMenu />
-              <DeleteMenu />
+              {/* <DeleteMenu /> */}
             </>
           } />
         } />
