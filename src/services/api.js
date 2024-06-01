@@ -11,8 +11,8 @@ const getDataApi = () => {
         throw new Error('Los datos no son un array');
       }
 
-      console.log("api con datos")
-      console.log(data)
+      console.log("api (data)", data)
+      
 
       
 
@@ -37,8 +37,7 @@ const getDataApi = () => {
             });
         });
     });
-      console.log('aqui datainfo despues de hacer forEach')
-      console.log(dataInfo)
+      console.log('Menus mapeados(dataInfo)', dataInfo)
       return {dataInfo};
     })
 };
