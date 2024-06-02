@@ -79,28 +79,28 @@ const FormRegister = () => {
 
   return (
     <span className='mainRegister'>
-        <h2>Registro</h2>
+        <h2 className='register-title'>Registro</h2>
       <form className='formRegister' onSubmit={handleSubmit}>
         {errorMessage && <p style={{ color: 'white' }}>{errorMessage}</p>}
         <span className='containerRegister'>
           <span>
-            <label>Name</label>
-            <input placeholder='Introduce tu Nombre' type="text" value={name} onChange={handleChangeName} required />
+            <label className='registerWords'>Name</label>
+            <input className='registerInputs' placeholder='Nombre...' type="text" value={name} onChange={handleChangeName} required />
           </span>
           <span>
-            <label>Username</label>
-            <input placeholder='Introduce tu Nombre de usuario' type="text" value={username} onChange={handleChangeUsername} required />
+            <label className='registerWords'>Username</label>
+            <input className='registerInputs' placeholder='Usuario...' type="text" value={username} onChange={handleChangeUsername} required />
           </span>
           <span>
-            <label>Email</label>
-            <input placeholder='Introduce tu Email' type="email" value={email} onChange={handleChangeEmail} required />
+            <label className='registerWords'>Email</label>
+            <input  className="registerInputs" placeholder='Email...' type="email" value={email} onChange={handleChangeEmail} required />
           </span>
           <span>
-            <label>Password</label>
-            <input placeholder='Introduce una contraseña' type="password" value={password} onChange={handleChangePassword} required />
+            <label className='registerWords'>Password</label>
+            <input className='registerInputs' placeholder='Contraseña...' type="password" value={password} onChange={handleChangePassword} required />
           </span>
         </span>
-        <button type="submit">Registrar</button>
+        <button className='registerButton' type="submit">Registrar</button>
       </form>
     </span>
   );

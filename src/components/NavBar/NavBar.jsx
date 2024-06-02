@@ -14,8 +14,6 @@ function NavBar({ setNav }) {
         <button className='clickButton'><Link to="/register">Registro</Link></button>
 
       </ul>
-
-      
     </nav>
   );
 }

@@ -15,9 +15,8 @@
 
 /* NUESTRO CSS AÑADIDO */
 
-img{
-  width: 550px;
-}
+/* NAV-BAR */
+
 
 *{
   padding:0;
@@ -34,14 +33,16 @@ img{
     height: 500px;
     padding-top: 0px;
     text-align: center;
+    position: absolute;
+    height: 100%;
   }
   .title{
     font-size: 55px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding: 10px;
+    padding: 30px;
   }
   .navButtons{
-
+    padding: 30px;
   }
 
 .clickButton{
@@ -51,7 +52,7 @@ img{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-transform: uppercase;
   padding: 12px;
-  margin: 20px;
+  margin: 30px;
   border: #242424;
   border-radius: 12px;
 }
@@ -64,4 +65,100 @@ a{
 .clickButton:hover{
   background-color: rgb(202, 173, 139);
   height: 100%;
+  border:1px solid rgb(119, 102, 83);
 }
+
+/* LOGIN */
+
+.login-title{
+  padding-top: 100px;
+  font-size: 30px;
+}
+.formLogin{
+  /* background-color: red; */
+  padding-top: 30px;
+  margin-top: 10px;
+  height: 60px;
+}
+.loginWords{
+  font-size: 18px;
+  padding: 10px;
+}
+.loginInputs{
+  height: 24px;
+  border-radius: 6px;
+  border-style: none;
+  border: 1px solid rgb(52, 52, 52);
+}
+.loginInputs:hover{
+  background-color: rgb(203, 202, 202);
+}
+.loginButton{
+  height: 50px;
+  width: 100px;
+  font-size: 18px;
+  color: #242424;
+  margin-left: 25px;
+  border-radius: 6px;
+  border-style: none;
+  border: 1px solid rgb(52, 52, 52);
+}
+.loginButton:hover{
+  background-color: rgb(202, 173, 139);
+  border:1px solid rgb(119, 102, 83);
+}
+
+/* REGISTRO */
+
+.register-title{
+  padding-top: 100px;
+  font-size: 30px;
+}
+.formRegister{
+ /* background-color: red; */
+ padding-top: 30px;
+ margin-top: 10px;
+ height: 60px;
+}
+.registerWords{
+  font-size: 18px;
+  padding: 10px;
+}
+.registerInputs{
+  height: 24px;
+  border-radius: 6px;
+  border-style: none;
+  border: 1px solid rgb(52, 52, 52);
+}
+.registerInputs:hover{
+  background-color: rgb(203, 202, 202);
+  place-content: none;
+}
+.registerInputs::placeholder{
+  padding-left: 5px;
+}
+.registerButton{
+  height: 50px;
+  width: 100px;
+  font-size: 18px;
+  color: #242424;
+  margin-left: 25px;
+  border-radius: 6px;
+  border-style: none;
+  border: 1px solid rgb(52, 52, 52);
+}
+.registerButton:hover{
+  background-color: rgb(202, 173, 139);
+  border:1px solid rgb(119, 102, 83);
+}
+
+/* RECIPES */
+
+/* Dias de la Semana */
+h3{
+  /* color: white; */
+  /* background-color: red; */
+  font-size: 28px;
+  padding: 16px;
+}
+
