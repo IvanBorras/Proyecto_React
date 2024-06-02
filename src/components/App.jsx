@@ -11,6 +11,7 @@ import NavBar from "./NavBar/NavBar";
 import AuthRoute from "./AuthRoute/AuthRoute";
 import Register from "./Register/Register";
 
+
 function App() {
   const [user, setUser] = useState(null);
   const [dataInfo, setDataInfo] = useState([]);
@@ -59,24 +60,32 @@ function App() {
 
   return (
     <div>
-      {nav !== '/food' && <NavBar setNav={setNav} />}
-
-      <Routes>
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/food" element={
-          <AuthRoute user={user} component={
-            <>
-              <FilterByTaste allTaste={getTaste()} setTaste={setTaste} />
-              <FilterByType allType={getType()} setType={setType} />
-              <FoodList dataInfo={dataInfo} setMenus={setMenus} />
-              <AddMenu />
-              {/* <DeleteMenu /> */}
-            </>
+      {!user && (
+        <div>
+          <NavBar setNav={setNav} />
+          <Routes>
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+        </div>
+      )}
+      {user && (
+        <Routes>
+          <Route path="/food" element={
+            <AuthRoute user={user} component={
+              <>
+                <FilterByTaste allTaste={getTaste()} setTaste={setTaste} />
+                <FilterByType allType={getType()} setType={setType} />
+                <FoodList dataInfo={dataInfo} setMenus={setMenus} />
+                <AddMenu />
+                {/* <DeleteMenu /> */}
+              </>
+            } />
           } />
-        } />
-        <Route path="*" element={user ? <Navigate to="/food" /> : <Navigate to="/login" />} />
-      </Routes>
+          <Route path="*" element={<Navigate to="/food" />} />
+        </Routes>
+      )}
     </div>
   );
 }
