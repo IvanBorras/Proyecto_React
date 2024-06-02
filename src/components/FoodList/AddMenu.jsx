@@ -97,12 +97,12 @@ const AddMenu = () => {
 
   return (
     <div>
-      <h2>AÑADIR MENÚ</h2>
+      <h2 className='addmenu  '>AÑADIR MENÚ</h2>
       {newMenus.map((newMenu, menuIndex) => (
         <div key={menuIndex}>
-          <h2>Nuevo Menú {menuIndex + 1}</h2>
-          <label>Nombre del Menú:</label>
-          <input
+          <h2 className='newmenu'>Nuevo Menú {menuIndex + 1}</h2>
+          <label className='menuname'>Nombre del Menú:</label>
+          <input className='inputmenuname'
             type="text"
             value={newMenu.name}
             onChange={(ev) => handleMenuNameChange(ev, menuIndex)}
@@ -113,24 +113,24 @@ const AddMenu = () => {
               <h3>{day.day}</h3>
               {day.meals.map((meal, mealIndex) => (
                 <div key={mealIndex}>
-                  <label>Plato:</label>
-                  <input
+                  <label className='platoname'>Plato:</label>
+                  <input className='inputname'
                     type="text"
                     name="name"
                     value={meal.name}
                     onChange={(ev) => handleInputChange(ev, menuIndex, dayIndex, mealIndex)}
                     required
                   />
-                  <label>Descripción:</label>
-                  <input
+                  <label className='platoname'>Descripción:</label>
+                  <input className='inputname'
                     type="text"
                     name="description"
                     value={meal.description}
                     onChange={(ev) => handleInputChange(ev, menuIndex, dayIndex, mealIndex)}
                     required
                   />
-                  <label>Tipo:</label>
-                  <select
+                  <label className='platoname'>Tipo:</label>
+                  <select className='selectoption'
                     name="type"
                     value={meal.type}
                     onChange={(ev) => handleInputChange(ev, menuIndex, dayIndex, mealIndex)}
@@ -145,19 +145,19 @@ const AddMenu = () => {
                   </select>
                 </div>
               ))}
-              <button type="button" onClick={() => addMealField(menuIndex, dayIndex)}>Añadir comida</button>
+              <button className='addfood' type="button" onClick={() => addMealField(menuIndex, dayIndex)}>Añadir comida</button>
             </div>
           ))}
-          <button type="button" onClick={() => cancelMenu(menuIndex)}>Cancelar Menú</button>
-          <button type="button" onClick={() => deleteMenu(menuIndex)}>Eliminar Menú</button>
+          <button className='cancelmenu' type="button" onClick={() => cancelMenu(menuIndex)}>Cancelar Menú</button>
+          <button className='deletemenu' type="button" onClick={() => deleteMenu(menuIndex)}>Eliminar Menú</button>
         </div>
       ))}
       {isFormVisible && (
         <form onSubmit={handleSubmit}>
-          <span><button type="submit">Guardar Menús</button></span>
+          <span><button className='savemenu' type="submit">Guardar Menús</button></span>
         </form>
       )}
-      <button type="button" onClick={addNewMenu}>Añadir otro menú</button>
+      <button className='addothermenu' type="button" onClick={addNewMenu}>Añadir otro menú</button>
     </div>
   );
 };
