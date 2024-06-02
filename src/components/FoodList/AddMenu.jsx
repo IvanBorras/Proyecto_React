@@ -7,6 +7,7 @@ const AddMenu = () => {
   ];
 
   const initialMenuState = {
+    name: '',  // Añadir el campo nombre al estado inicial del menú
     days: initialDays.map(day => ({
       day,
       meals: [
@@ -18,7 +19,8 @@ const AddMenu = () => {
   };
 
   const [existingMenus, setExistingMenus] = useState([]);
-  const [newMenus, setNewMenus] = useState([initialMenuState]);
+  const [newMenus, setNewMenus] = useState([]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
     // Obtener los menús existentes desde MockAPI
@@ -40,39 +42,54 @@ const AddMenu = () => {
     setNewMenus(updatedMenus);
   };
 
+  const handleMenuNameChange = (ev, menuIndex) => {
+    const { value } = ev.target;
+    const updatedMenus = [...newMenus];
+    updatedMenus[menuIndex].name = value;
+    setNewMenus(updatedMenus);
+  };
+
+  //agregar inputs para añadir comidas
   const addMealField = (menuIndex, dayIndex) => {
     const updatedMenus = [...newMenus];
     updatedMenus[menuIndex].days[dayIndex].meals.push({ name: '', description: '', type: '' });
     setNewMenus(updatedMenus);
   };
 
+  //agregar formulario para añadir menus
   const addNewMenu = () => {
     setNewMenus([...newMenus, initialMenuState]);
+    setIsFormVisible(true);
   };
+  
+  const deleteMenu = (menuIndex) => {
+    const updatedMenus = [...newMenus];
+    updatedMenus.splice(menuIndex, 1); // Elimina el menú en el índice menuIndex
+    setNewMenus(updatedMenus);
+  };
+
 
   const cancelMenu = (menuIndex) => {
     const updatedMenus = newMenus.filter((_, index) => index !== menuIndex);
-    setNewMenus(updatedMenus.length ? updatedMenus : [initialMenuState]);
+    setNewMenus(updatedMenus.length ? updatedMenus : []);
+    setIsFormVisible(updatedMenus.length > 0);
   };
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      // Combina los menús existentes con los nuevos menús antes de enviarlos a MockAPI
-      const combinedMenus = [...existingMenus, ...newMenus.map(({ menu }) => menu)];
-  
-      // Loguear los menús combinados para verificar la estructura
-      console.log('Menús combinados:', JSON.stringify(combinedMenus, null, 2));
-  
-      // Envía los menús combinados a MockAPI
-      const response = await axios.post('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/menus', combinedMenus);
-      console.log('Menús guardados correctamente:', response.data);
-  
+      // Envía cada nuevo menú como un objeto separado a MockAPI
+      const promises = newMenus.map(menu => axios.post('https://66505580ec9b4a4a6031a3aa.mockapi.io/users/menus', menu));
+      const responses = await Promise.all(promises);
+      
       // Actualiza el estado de los menús existentes después de guardar los nuevos menús
-      setExistingMenus(response.data);
-  
+      setExistingMenus([...existingMenus, ...responses.map(response => response.data)]);
+      
       // Resetear el formulario después de enviar los datos
-      setNewMenus([initialMenuState]);
+      setNewMenus([]);
+      console.error('Formulario enviado:');
+
+      setIsFormVisible(false);
     } catch (error) {
       console.error('Error al guardar los menús:', error.response?.data || error.message);
     }
@@ -84,6 +101,13 @@ const AddMenu = () => {
       {newMenus.map((newMenu, menuIndex) => (
         <div key={menuIndex}>
           <h2>Nuevo Menú {menuIndex + 1}</h2>
+          <label>Nombre del Menú:</label>
+          <input
+            type="text"
+            value={newMenu.name}
+            onChange={(ev) => handleMenuNameChange(ev, menuIndex)}
+            required
+          />
           {newMenu.days.map((day, dayIndex) => (
             <div key={dayIndex}>
               <h3>{day.day}</h3>
@@ -114,7 +138,9 @@ const AddMenu = () => {
                   >
                     <option value="">Seleccionar tipo...</option>
                     <option value="Desayuno">Desayuno</option>
+                    <option value="Almuerzo">Almuerzo</option>
                     <option value="Comida">Comida</option>
+                    <option value="Merienda">Merienda</option>
                     <option value="Cena">Cena</option>
                   </select>
                 </div>
@@ -123,12 +149,15 @@ const AddMenu = () => {
             </div>
           ))}
           <button type="button" onClick={() => cancelMenu(menuIndex)}>Cancelar Menú</button>
+          <button type="button" onClick={() => deleteMenu(menuIndex)}>Eliminar Menú</button>
         </div>
       ))}
-        <button type="submit">Guardar Menús</button>
-      <form onSubmit={handleSubmit}>
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+          <span><button type="submit">Guardar Menús</button></span>
+        </form>
+      )}
       <button type="button" onClick={addNewMenu}>Añadir otro menú</button>
-      </form>
     </div>
   );
 };
